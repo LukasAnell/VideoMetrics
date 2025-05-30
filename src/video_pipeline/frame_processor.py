@@ -82,6 +82,11 @@ class FrameProcessor:
                 processed_frame = convert_color(processed_frame, source_format, self.color_format)
 
         # Apply normalization if requested
+        should_normalize = apply_normalization if apply_normalization is not None else self.normalize
+        if should_normalize:
+            processed_frame = normalize_frame(processed_frame)
+
+        # Apply normalization if requested
         if additional_transforms:
             processed_frame = self.apply_transformations(
                 processed_frame,
