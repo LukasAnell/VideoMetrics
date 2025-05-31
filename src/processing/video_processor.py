@@ -5,6 +5,7 @@ from typing import Dict, Tuple, List
 import numpy as np
 
 from src.detection.detector import Detector, Detection
+from src.metrics.collector import MetricsCollector
 from src.tracking.tracker import ObjectTracker
 
 logger = logging.getLogger(__name__)
@@ -35,6 +36,9 @@ class VideoProcessor:
         self.fps = 0
         self.processing_time = 0
 
+        # Initialize metrics collector
+        self.metrics = MetricsCollector()
+
     def process_frame(self, frame: np.ndarray) -> Tuple[np.ndarray, List[Detection]]:
         """
         Process a single frame with detection and tracking
@@ -61,5 +65,11 @@ class VideoProcessor:
 
         # Increment frame counter
         self.frame_count += 1
+
+        # Update metrics with tracked objects
+        self.metrics.update(tracked_objects, frame.shape)
+
+        # Visualize metrics if needed
+        frame = self.metrics.draw_metrics(frame)
 
         return frame, tracked_objects
