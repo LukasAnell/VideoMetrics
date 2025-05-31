@@ -29,6 +29,7 @@ class Detection:
         self.class_name = class_name
         self.confidence = confidence
         self.frame_id = frame_id
+        self.track_id = None  # Optional tracking ID
 
     def __repr__(self):
         return f"Detection(class={self.class_name}, conf={self.confidence:.2f}, bbox={self.bbox})"
