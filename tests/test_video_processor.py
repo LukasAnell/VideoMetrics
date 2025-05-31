@@ -32,7 +32,7 @@ class TestVideoProcessor(unittest.TestCase):
 
     def test_initialization (self):
         """Test processor initialization"""
-        self.assertEqual(self.processor.detection_intereval, 2)
+        self.assertEqual(self.processor.detection_interval, 2)
         self.assertEqual(self.processor.frame_count, 0)
         self.assertEqual(self.processor.fps, 0)
 
