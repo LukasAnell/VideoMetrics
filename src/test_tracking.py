@@ -7,9 +7,9 @@ import cv2
 # Add project root to Python path if needed
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from detection.yolo_detector import YOLODetector
-from detection.visualization import draw_detections, draw_stats
-from processing.video_processor import VideoProcessor
+from src.detection.yolo_detector import YOLODetector
+from src.detection.visualization import draw_detections, draw_stats
+from src.processing.video_processor import VideoProcessor
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)

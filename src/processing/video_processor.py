@@ -4,8 +4,8 @@ from typing import Dict, Tuple, List
 
 import numpy as np
 
-from ..detection.detector import Detector, Detection
-from ..tracking.tracker import ObjectTracker
+from src.detection.detector import Detector, Detection
+from src.tracking.tracker import ObjectTracker
 
 logger = logging.getLogger(__name__)
 
@@ -28,7 +28,7 @@ class VideoProcessor:
         self.tracker = ObjectTracker(tracker_type)
 
         # Detection frequency (every N frames)
-        self.detection_intereval = self.config.get("detection_interval", 5)
+        self.detection_interval = self.config.get("detection_interval", 5)
         self.frame_count = 0
 
         # Performance metrics
@@ -49,7 +49,7 @@ class VideoProcessor:
 
         # Run detection on selected frames
         detections = None
-        if self.frame_count % self.detection_intereval == 0:
+        if self.frame_count % self.detection_interval == 0:
             detections = self.detector.detect(frame)
 
         # Update tracking with new frame (and detections if available)
